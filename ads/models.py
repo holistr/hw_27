@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from users.models import User
@@ -5,6 +6,7 @@ from users.models import User
 
 class Category(models.Model):
     name = models.CharField(verbose_name="Название категории", max_length=60, unique=True)
+    slug = models.CharField(verbose_name="Слаг", validators=[MinLengthValidator(5)], max_length=10, unique=True)
 
     def __str__(self):
         return self.name
@@ -19,7 +21,7 @@ class Ad(models.Model):
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
 
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(10)])
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ads')
     price = models.PositiveIntegerField()
     description = models.TextField(null=True)

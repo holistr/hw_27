@@ -125,6 +125,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "register"
+version = "0.1"
+description = "registry for functions and classes"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.3"
 description = "A non-validating SQL parser."
@@ -143,7 +151,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c6e7a9d75633360c8d4fb86cf0e8d04bc8b58cefc5a42b679f90e3b1a83fef0c"
+content-hash = "a46a27b6dbbb5ca9aff6b0e0f23c665debff12eca18550d3d343f06f8ddfcaa8"
 
 [metadata.files]
 asgiref = [
@@ -263,6 +271,9 @@ PyJWT = [
 pytz = [
     {file = "pytz-2022.4-py2.py3-none-any.whl", hash = "sha256:2c0784747071402c6e99f0bafdb7da0fa22645f06554c7ae06bf6358897e9c91"},
     {file = "pytz-2022.4.tar.gz", hash = "sha256:48ce799d83b6f8aab2020e369b627446696619e79645419610b9facd909b3174"},
+]
+register = [
+    {file = "register-0.1.tar.gz", hash = "sha256:9e392731cb68e78860a8931588c6d2a7b8676f35ba9123e10c8f2edb91a6aa5c"},
 ]
 sqlparse = [
     {file = "sqlparse-0.4.3-py3-none-any.whl", hash = "sha256:0323c0ec29cd52bceabc1b4d9d579e311f3e4961b98d174201d5622a23b85e34"},

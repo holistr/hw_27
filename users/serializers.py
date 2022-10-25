@@ -3,6 +3,12 @@ from rest_framework import serializers
 from users.models import User, Location
 
 
+def email_validator(value):
+    if value.endswith("rambler.ru"):
+        raise serializers.ValidationError(f"Can't register email from this domain {value}")
+    return value
+
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
@@ -10,16 +16,17 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    location = serializers.SlugRelatedField(required=False, many=True, slug_field="name", queryset=Location.objects.all())
+    location = serializers.SlugRelatedField(many=True, read_only=True, slug_field="name")
 
     class Meta:
-        model = Location
-        fields = "__all__"
+        model = User
+        exclude = ["password"]
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
     location = serializers.SlugRelatedField(required=False, queryset=Location.objects.all(), many=True,
                                             slug_field="name")
+    email = serializers.EmailField(validators=[email_validator])
 
     def is_valid(self, *, raise_exception=False):
         self._locations = self.initial_data_pop("location", [])
